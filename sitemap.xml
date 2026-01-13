@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://beautiful-genie-aae543.netlify.app/</loc>
+    <loc>https://invest-insight.netlify.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <url>
+    <loc>https://invest-insight.netlify.app/blog-emergency-fund.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://invest-insight.netlify.app/blog-sip-vs-lumpsum.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://invest-insight.netlify.app/blog-stock-market.html</loc>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
