@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InvestInsight – Finance & Investment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f7f9fb;
+      color: #222;
+    }
+
+    /* HEADER */
+    header {
+      background: #0f5132; /* dark green */
+      padding: 15px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* LOGO FIX */
+    header img {
+      height: 55px;
+      background: #ffffff;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+
+    nav a {
+      color: #ffffff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 70px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      color: #0f5132;
+    }
+
+    .hero p {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #198754;
+      color: #ffffff;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .section {
+      padding: 60px 40px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      color: #0f5132;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #0f5132;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="InvestInsight Logo" />
+  <nav>
+    <a href="#">Home</a>
+    <a href="#learn">Learn</a>
+    <a href="#blog">Blog</a>
+    <a href="#tools">Tools</a>
+    <a href="#youtube">YouTube</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Smart Finance, Smarter Future</h1>
+    <p>
+      Hinglish me simple aur practical finance gyaan –
+      saving, investing aur wealth building ke liye.
+    </p>
+    <a href="#blog" class="btn">Start Learning</a>
+    <a href="#youtube" class="btn" style="background:#0f5132">Watch Videos</a>
+  </div>
+  <div>
+    <img src="hero-finance.png" alt="Finance Illustration" style="width:100%" />
+  </div>
+</section>
+
+<section class="section" id="learn">
+  <h2>Learn Finance (Beginner Friendly)</h2><br />
+  <div class="cards">
+    <div class="card">
+      <h3>Emergency Fund</h3>
+      <p>Emergency fund kya hota hai aur kitna hona chahiye – complete guide.</p>
+    </div>
+    <div class="card">
+      <h3>Mutual Funds & SIP</h3>
+      <p>SIP kaise start kare aur long-term wealth kaise banaye.</p>
+    </div>
+    <div class="card">
+      <h3>Stock Market Basics</h3>
+      <p>Stocks, risk aur returns ko easy language me samjho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS SECTION -->
+<section class="section" id="tools">
+  <h2>SIP Calculator</h2><br />
+  <div class="card" style="max-width:500px">
+    <label>Monthly SIP (₹)</label><br />
+    <input type="number" id="sipAmount" placeholder="5000" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <label>Investment Period (Years)</label><br />
+    <input type="number" id="sipYears" placeholder="10" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <label>Expected Return (% per year)</label><br />
+    <input type="number" id="sipRate" placeholder="12" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <button class="btn" onclick="calculateSIP()">Calculate</button>
+
+    <div id="sipResult" style="margin-top:20px;font-weight:600"></div>
+  </div>
+</section>
+
+<script>
+function calculateSIP() {
+  let P = parseFloat(document.getElementById('sipAmount').value);
+  let years = parseFloat(document.getElementById('sipYears').value);
+  let rate = parseFloat(document.getElementById('sipRate').value) / 100 / 12;
+  let months = years * 12;
+
+  if (!P || !years || !rate) {
+    document.getElementById('sipResult').innerHTML = 'Please fill all values';
+    return;
+  }
+
+  let futureValue = P * ((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate);
+  let invested = P * months;
+
+  document.getElementById('sipResult').innerHTML = `
+    Invested Amount: ₹${invested.toLocaleString()} <br>
+    Estimated Value: ₹${Math.round(futureValue).toLocaleString()}
+  `;
+}
+</script>
+
+<!-- EMI CALCULATOR -->
+<section class="section" id="emi">
+  <h2>EMI Calculator</h2><br />
+  <div class="card" style="max-width:500px">
+    <label>Loan Amount (₹)</label><br />
+    <input type="number" id="emiLoan" placeholder="500000" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <label>Interest Rate (% per year)</label><br />
+    <input type="number" id="emiRate" placeholder="9" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <label>Loan Tenure (Years)</label><br />
+    <input type="number" id="emiYears" placeholder="20" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <button class="btn" onclick="calculateEMI()">Calculate EMI</button>
+    <div id="emiResult" style="margin-top:20px;font-weight:600"></div>
+  </div>
+</section>
+
+<!-- LUMPSUM CALCULATOR -->
+<section class="section" id="lumpsum">
+  <h2>Lumpsum Calculator</h2><br />
+  <div class="card" style="max-width:500px">
+    <label>Investment Amount (₹)</label><br />
+    <input type="number" id="lumpAmount" placeholder="100000" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <label>Expected Return (% per year)</label><br />
+    <input type="number" id="lumpRate" placeholder="12" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <label>Time Period (Years)</label><br />
+    <input type="number" id="lumpYears" placeholder="10" style="width:100%;padding:10px;margin:8px 0"><br />
+
+    <button class="btn" onclick="calculateLumpsum()">Calculate</button>
+    <div id="lumpResult" style="margin-top:20px;font-weight:600"></div>
+  </div>
+</section>
+
+<script>
+function calculateEMI(){
+  let P = parseFloat(document.getElementById('emiLoan').value);
+  let r = parseFloat(document.getElementById('emiRate').value)/100/12;
+  let n = parseFloat(document.getElementById('emiYears').value)*12;
+
+  if(!P||!r||!n){
+    document.getElementById('emiResult').innerHTML='Please fill all values';
+    return;
+  }
+
+  let emi = (P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  document.getElementById('emiResult').innerHTML = `Monthly EMI: ₹${Math.round(emi).toLocaleString()}`;
+}
+
+function calculateLumpsum(){
+  let P = parseFloat(document.getElementById('lumpAmount').value);
+  let r = parseFloat(document.getElementById('lumpRate').value)/100;
+  let t = parseFloat(document.getElementById('lumpYears').value);
+
+  if(!P||!r||!t){
+    document.getElementById('lumpResult').innerHTML='Please fill all values';
+    return;
+  }
+
+  let fv = P * Math.pow(1+r,t);
+  document.getElementById('lumpResult').innerHTML = `Future Value: ₹${Math.round(fv).toLocaleString()}`;
+}
+</script>
+
+<!-- BLOG SECTION -->
+<section class="section" id="blog">
+  <h2>Latest Blogs</h2><br />
+  <div class="cards">
+    <div class="card">
+      <h3>Emergency Fund Complete Guide</h3>
+      <p>Emergency fund kyun zaroori hai aur kaise banayein.</p>
+      <a href="#" class="btn">Read More</a>
+    </div>
+    <div class="card">
+      <h3>Best SIP Strategy 2026</h3>
+      <p>Long-term wealth ke liye SIP strategy samjhein.</p>
+      <a href="#" class="btn">Read More</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="section" id="blog">
+  <h2>Finance Blog (Hinglish)</h2><br />
+  <div class="cards">
+
+    <div class="card">
+      <h3>Emergency Fund kya hota hai?</h3>
+      <p>Emergency fund ek safety net hota hai jo unexpected situations me kaam aata hai.</p>
+      <a href="blog-emergency-fund.html" class="btn">Read More</a>
+    </div>
+
+    <div class="card">
+      <h3>SIP vs Lumpsum</h3>
+      <p>Kaunsa investment better hai – SIP ya Lumpsum? Simple comparison Hinglish me.</p>
+      <a href="blog-sip-vs-lumpsum.html" class="btn">Read More</a>
+    </div>
+
+    <div class="card">
+      <h3>Stock Market Beginners Guide</h3>
+      <p>Stock market ka basic overview beginners ke liye – risk, return aur mindset.</p>
+      <a href="blog-stock-market.html" class="btn">Read More</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 InvestInsight | Finance & Investment</p>
+</footer>
+
+</body>
+</html>
